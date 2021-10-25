@@ -36,6 +36,10 @@ public class Ex5 {
         
         //System.out.println(lista.getFromList(2));
         lista.getList();
+        
+        Management<CD> mn2 = new Management<>();
+        
+        mn2.addList(cd2);
     }
     
 }
