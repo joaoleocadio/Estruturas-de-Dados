@@ -4,7 +4,7 @@ package Stack;
  *
  * @author joaoc
  */
-public class ArrayStack <T> implements StackADT<T>{
+public class ArrayStack<T> implements StackADT<T>{
     private final int DEFAULT_CAPACITY = 100;
     private int top;
     private T[] stack;
@@ -16,18 +16,17 @@ public class ArrayStack <T> implements StackADT<T>{
 
     public ArrayStack(int initialCapacity) {
         this.top = 0;
-        this.stack = (T[])(new Object[DEFAULT_CAPACITY]);
+        this.stack = (T[])(new Object[initialCapacity]);
     }
-
 
     @Override
     public void push(T element) {
-        if (size() == stack.length) 
+        if (size() == stack.length) {
             expandCapacity();
-        
-        stack[top] = element;
-        top++;
-        
+            
+            stack[top] = element;
+            top++;
+        }
     }
 
     @Override
@@ -47,9 +46,9 @@ public class ArrayStack <T> implements StackADT<T>{
     public T peek() throws EmptyCollectionException {
         if (isEmpty()) {
             throw new EmptyCollectionException(EmptyCollectionException.EMPTYCOLLECTION);
+        } else {
+            return stack[top - 1];
         }
-        
-        return stack[top - 1];
     }
 
     @Override
@@ -71,7 +70,7 @@ public class ArrayStack <T> implements StackADT<T>{
         
         stack = tmp;
     }
-
+    
     @Override
     public String toString() {
         String text = "";
@@ -79,10 +78,11 @@ public class ArrayStack <T> implements StackADT<T>{
         int lastPosition = size() - 1;
         
         while (lastPosition != -1) {            
-            text += "Posição: " + lastPosition + " -------> " + "Conteúdo: " + stack[lastPosition] + "\n";
+            text += stack[lastPosition] + "\n";
             lastPosition--;
         }
         
         return text;
     }
+    
 }

@@ -27,6 +27,7 @@ public class EX1 {
         st.pop();
         st.pop();
 
+        System.out.println(st.peek());
         System.out.println(st.toString());
 
     }   
