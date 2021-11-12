@@ -33,6 +33,7 @@ public class DoubleLikedOrderedList<T> extends DoubleLinkedList<T> implements Or
                 }
                 
                 if (found == true) {
+                    //Adicionar no inicio da lista
                     if (current == this.head) {
                         DoubleNode<T> olderHead = head;
                         this.head = new DoubleNode<>(element);
@@ -42,14 +43,17 @@ public class DoubleLikedOrderedList<T> extends DoubleLinkedList<T> implements Or
                         DoubleNode<T> previous = current.getPrevious();
                         DoubleNode<T> newNode = new DoubleNode<>(element);
                         
+                        //Apontar para o meio do valor encontrado
                         previous.setNext(newNode);
                         current.setPrevious(newNode);
                         
                         newNode.setPrevious(previous);
                         newNode.setNext(current);
                     }
+                    //Se não conseguir comparar, adiciona no fim
                 } else {
                     DoubleNode<T> olderTail = this.tail;
+                    
                     this.tail = new DoubleNode<>(element);
                     tail.setPrevious(olderTail);
                     olderTail.setNext(tail);

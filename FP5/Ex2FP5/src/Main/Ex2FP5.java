@@ -26,6 +26,7 @@ public class Ex2FP5 {
             list.add(6);
             list.add(8);
             list.add(5);
+            System.out.println(list.iterator().next());
             System.out.println(list.toString());
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());

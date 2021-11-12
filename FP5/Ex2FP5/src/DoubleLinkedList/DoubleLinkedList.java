@@ -20,6 +20,9 @@ public abstract class DoubleLinkedList<T> implements ListADT<T>{
         private DoubleNode<T> current = (DoubleNode<T>) head;
         private int expectedModCount = modCount;
 
+        public DoubleLinkedListIterator() {
+        }
+        
         @Override
         public boolean hasNext() {
             if (expectedModCount == modCount) {
@@ -43,9 +46,7 @@ public abstract class DoubleLinkedList<T> implements ListADT<T>{
             current = current.getNext();
             
             return result;
-        }
-
-        
+        }     
     }
 
     /**
@@ -130,6 +131,7 @@ public abstract class DoubleLinkedList<T> implements ListADT<T>{
             } else {
                 DoubleNode<T> previous = tmp.getPrevious();
                 DoubleNode<T> next = tmp.getNext();
+                
                 previous.setNext(tmp.getNext());
                 next.setPrevious(tmp.getPrevious());
             }
@@ -232,12 +234,12 @@ public abstract class DoubleLinkedList<T> implements ListADT<T>{
 
     @Override
     public String toString() {
-        String text = "";
+        String text = "\n";
         
         DoubleNode<T> tmp = this.head;
         
         while (tmp != null) {            
-            text += " " + tmp.getElement() + "\n";
+            text += tmp.getElement() + " ";
             tmp = tmp.getNext();
         }
         

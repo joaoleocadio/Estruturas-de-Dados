@@ -8,22 +8,24 @@ import java.util.Iterator;
  *
  * @author joaoc
  */
-public abstract class ArrayList<T> implements ListADT<T>{
+public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>{
     
-    protected final static int DEFAULT_CAPACITY = 2;
+    protected final static int DEFAULT_CAPACITY = 10;
     
     protected T[] list;
     protected int cont;
     protected int modCount = 0;
     
-    private class ArrayIterator<T> implements Iterator<T> {
+    public class ArrayIterator<T> implements Iterator {
 
         private int current;
         private int expectedModCount;
+        private boolean okToRemove;
 
         public ArrayIterator() {
             this.current = 0;
             this.expectedModCount = modCount;
+            this.okToRemove = false;
         }
            
         
@@ -32,6 +34,8 @@ public abstract class ArrayList<T> implements ListADT<T>{
             if (this.expectedModCount != modCount ) {
                 throw new ConcurrentModificationException();
             } 
+            
+            this.okToRemove = false;
             
             return (current < cont);
         }
@@ -44,8 +48,29 @@ public abstract class ArrayList<T> implements ListADT<T>{
             
             T tmp = (T) list[current];
             current++;
+            this.okToRemove = true;
+            
             return tmp;
-        }       
+        }   
+
+        @Override
+        public void remove() {
+            if (this.expectedModCount != modCount) {
+                throw new ConcurrentModificationException();
+            }
+            
+            if (!okToRemove) {
+                throw new RuntimeException("It´s not possible to remove");
+            }
+            
+            try {
+                ArrayList.this.remove(list[current]);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            this.okToRemove = false;
+            this.expectedModCount++;
+        }      
     }
     
 
@@ -54,8 +79,7 @@ public abstract class ArrayList<T> implements ListADT<T>{
         this.cont = 0;
     }
     
-    
-    
+      
     @Override
     public T removeFirst() throws EmptyCollectionException{
         if (isEmpty()) {
