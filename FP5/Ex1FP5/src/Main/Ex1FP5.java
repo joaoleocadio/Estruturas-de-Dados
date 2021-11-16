@@ -39,16 +39,14 @@ public class Ex1FP5 {
             lista.add(12);
             System.out.println(lista.toString());
             
+            lista.add(20);
             while (itr.hasNext()) { 
                 System.out.println(itr.next());
                 
             }
             
             lista.removeLast();
-            while (itr.hasNext()) { 
-                System.out.println(itr.next());
-                
-            }
+            System.out.println(lista.toString());
             
         } catch (Exception e) {
             System.out.println("Exception: " + e.getMessage());

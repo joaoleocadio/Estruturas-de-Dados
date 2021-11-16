@@ -4,50 +4,18 @@ import Interfaces.ListADT;
 import Interfaces.ListsException;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /**
  *
  * @author joaoc
  */
-public abstract class DoubleLinkedList<T> implements ListADT<T>{
+public abstract class DoubleLinkedList<T> implements ListADT<T>, Iterable<T>{
     protected DoubleNode<T> head;
     protected DoubleNode<T> tail;
     protected int count;
     protected int modCount;
     
-    private class DoubleLinkedListIterator<T> implements Iterator<T>{
-        private DoubleNode<T> current = (DoubleNode<T>) head;
-        private int expectedModCount = modCount;
-
-        public DoubleLinkedListIterator() {
-        }
-        
-        @Override
-        public boolean hasNext() {
-            if (expectedModCount == modCount) {
-                if (current != null) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                throw new ConcurrentModificationException();
-            }
-        }
-
-        @Override
-        public T next() {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
-            
-            T result = current.getElement();
-            current = current.getNext();
-            
-            return result;
-        }     
-    }
+    
 
     /**
      * Default Constructor DoubleLinkedList
@@ -229,7 +197,7 @@ public abstract class DoubleLinkedList<T> implements ListADT<T>{
      */
     @Override
     public Iterator<T> iterator() {
-        return new DoubleLinkedListIterator<T>();
+        return new DoubleLinkedListIterator();
     }
 
     @Override
@@ -244,5 +212,62 @@ public abstract class DoubleLinkedList<T> implements ListADT<T>{
         }
         
         return text;
-    }    
+    }  
+    
+    private class DoubleLinkedListIterator implements Iterator<T>{
+             
+        private DoubleNode<T> current;
+        private int expectedModCount = modCount;
+        private boolean okToRemove;
+
+        public DoubleLinkedListIterator() {
+            this.current = (DoubleNode<T>) head;
+            this.expectedModCount = modCount;
+            this.okToRemove = false;
+        }     
+        
+        @Override
+        public boolean hasNext() {
+            if (expectedModCount != modCount) {
+                throw new ConcurrentModificationException();
+            }
+            
+            this.okToRemove = false;
+            
+            return (current != null);
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new ArrayIndexOutOfBoundsException("There isn´t a next element");
+            }
+            
+            DoubleNode<T> tmp = this.current;
+            
+            this.current = this.current.getNext();
+            this.okToRemove = true;
+            
+            return tmp.getElement();
+        } 
+
+        @Override
+        public void remove() {
+            if (expectedModCount != modCount) {
+                throw new ConcurrentModificationException();
+            }
+
+            if (!okToRemove) {
+                throw new RuntimeException("It´s not possible to remove");
+            }
+
+            try {
+                DoubleLinkedList.this.remove((T) current.getElement());
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+            okToRemove = false;
+            expectedModCount++;
+        }    
+    }
 }
