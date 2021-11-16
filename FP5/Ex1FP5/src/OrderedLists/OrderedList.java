@@ -51,6 +51,7 @@ public class OrderedList<T> extends ArrayList<T> implements OrderedListADT<T> {
             }
             
             cont++;
+            modCount++;
             
         } else {
             throw new EmptyCollectionException("O elemento não é instancia de comparable!");

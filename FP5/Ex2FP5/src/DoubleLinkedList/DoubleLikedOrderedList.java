@@ -61,7 +61,7 @@ public class DoubleLikedOrderedList<T> extends DoubleLinkedList<T> implements Or
             }
             
             this.count++;
-            modCount++;
+            //modCount++;
         } else {
             throw new ListsException("Objeto não é instância de Comparable! ");
         }

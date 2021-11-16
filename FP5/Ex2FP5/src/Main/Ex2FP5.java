@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Main;
 
 import DoubleLinkedList.DoubleLikedOrderedList;
+import DoubleLinkedList.DoubleLinkedList;
+import java.util.Iterator;
 
 
 /**
@@ -26,8 +23,22 @@ public class Ex2FP5 {
             list.add(6);
             list.add(8);
             list.add(5);
+
+            Iterator<Integer> itr = list.iterator();
             
-            System.out.println(list.toString());
+            while (itr.hasNext()) {
+                System.out.println(itr.next());
+            }
+            
+            itr.remove();
+            list.add(9);
+            list.add(10);
+            
+            while (itr.hasNext()) {
+                System.out.println(itr.next());
+            }
+            
+            
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }

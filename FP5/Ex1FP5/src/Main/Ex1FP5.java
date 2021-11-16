@@ -31,22 +31,26 @@ public class Ex1FP5 {
             Iterator<Integer> itr = lista.iterator();
             
             while (itr.hasNext()) { 
-                System.out.println(itr.next());
-                
+                System.out.println(itr.next());               
             }
             
             
             lista.add(12);
-            System.out.println(lista.toString());
+            //System.out.println(lista.toString());
             
             lista.add(20);
+            
+            /*
+            System.out.println("----------");
             while (itr.hasNext()) { 
                 System.out.println(itr.next());
                 
-            }
+            }*/
             
             lista.removeLast();
+            
             System.out.println(lista.toString());
+            System.out.println("");
             
         } catch (Exception e) {
             System.out.println("Exception: " + e.getMessage());

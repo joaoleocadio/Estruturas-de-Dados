@@ -1,6 +1,6 @@
-package OrderedLists;
+package UnorderedLists;
 
-import Interfaces.ListADT;
+import Interface.ListADT;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
@@ -24,9 +24,9 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>{
     
       
     @Override
-    public T removeFirst() throws EmptyCollectionException{
+    public T removeFirst() throws ListsException {
         if (isEmpty()) {
-            throw new EmptyCollectionException(EmptyCollectionException.EMPTYCOLLECTION);
+            throw new ListsException(ListsException.EMPTYCOLLECTION);
         }
         
         T tmp = list[0];
@@ -45,9 +45,9 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>{
     }
 
     @Override
-    public T removeLast() throws EmptyCollectionException{
+    public T removeLast() throws ListsException {
         if (isEmpty()) {
-            throw new EmptyCollectionException(EmptyCollectionException.EMPTYCOLLECTION);
+            throw new ListsException(ListsException.EMPTYCOLLECTION);
         }
         
         T tmp = list[size() - 1];
@@ -60,15 +60,15 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>{
     }
 
     @Override
-    public T remove(T element) throws EmptyCollectionException {
+    public T remove(T element) throws ListsException {
         int position = searchElement(element);
         
         if (isEmpty()) {
-            throw new EmptyCollectionException(EmptyCollectionException.EMPTYCOLLECTION);
+            throw new ListsException(ListsException.EMPTYCOLLECTION);
         }
         
         if (position == -1) {
-            throw new EmptyCollectionException("Elemento não encontrado!");
+            throw new ListsException("Elemento não encontrado!");
         } else if (position == 0) {
             return removeFirst();
         } else if (position == size() - 1) {

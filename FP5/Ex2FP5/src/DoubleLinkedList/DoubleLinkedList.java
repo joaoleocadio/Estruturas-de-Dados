@@ -229,7 +229,7 @@ public abstract class DoubleLinkedList<T> implements ListADT<T>, Iterable<T>{
         @Override
         public boolean hasNext() {
             if (expectedModCount != modCount) {
-                throw new ConcurrentModificationException();
+                throw new ConcurrentModificationException("Coleção alterada!");
             }
             
             this.okToRemove = false;
