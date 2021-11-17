@@ -30,12 +30,13 @@ public class Ex2FP5 {
                 System.out.println(itr.next());
             }
             
-            itr.remove();
             list.add(9);
             list.add(10);
             
-            while (itr.hasNext()) {
-                System.out.println(itr.next());
+            System.out.println("----------");
+            Iterator<Integer> itr1 = list.iterator();
+            while (itr1.hasNext()) {
+                System.out.println(itr1.next());
             }
             
             

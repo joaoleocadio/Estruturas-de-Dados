@@ -29,7 +29,7 @@ public class Ex1FP5 {
             
             
             Iterator<Integer> itr = lista.iterator();
-            
+
             while (itr.hasNext()) { 
                 System.out.println(itr.next());               
             }
@@ -47,7 +47,12 @@ public class Ex1FP5 {
                 
             }*/
             
-            lista.removeLast();
+            //lista.removeLast();
+            Iterator<Integer> itr1 = lista.iterator();
+            while (itr1.hasNext()) { 
+                System.out.println(itr1.next());               
+            }
+            
             
             System.out.println(lista.toString());
             System.out.println("");
