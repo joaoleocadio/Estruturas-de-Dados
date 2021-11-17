@@ -1,6 +1,6 @@
 package UnorderedLists;
 
-import Interface.UnorderedListADT;
+import Interfaces.UnorderedListADT;
 
 /**
  *

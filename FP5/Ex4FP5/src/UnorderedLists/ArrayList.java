@@ -1,6 +1,6 @@
 package UnorderedLists;
 
-import Interface.ListADT;
+import Interfaces.ListADT;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 

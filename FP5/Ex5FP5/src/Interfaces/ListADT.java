@@ -1,6 +1,5 @@
-package Interface;
+package Interfaces;
 
-import UnorderedLists.ListsException;
 import java.util.Iterator;
 
 /**
