@@ -39,6 +39,9 @@ public class Ex2FP5 {
                 System.out.println(itr1.next());
             }
             
+            System.out.println("---- Inverter -----");
+            
+            System.out.println(list.invert());
             
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());

@@ -2,6 +2,7 @@ package Main;
 
 import Interfaces.ListsException;
 import UnorderedLists.DoubleLinkedUnorderedList;
+import java.util.Iterator;
 
 /**
  *
@@ -22,7 +23,13 @@ public class Ex5FP5 {
         list.addToFront(10);
         list.addAfter(100, 10);
         
-        System.out.println(list.toString());
+        Iterator<Integer> itr = list.iterator();
+        
+        while (itr.hasNext()) {
+            System.out.println(itr.next());          
+        }
+        
+        //System.out.println(list.toString());
     }
     
 }

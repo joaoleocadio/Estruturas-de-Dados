@@ -67,4 +67,19 @@ public class DoubleLikedOrderedList<T> extends DoubleLinkedList<T> implements Or
         }
     }
     
+    /**
+     * Exercicio 3 da ficha 5
+     * @return a string invertida
+     */
+    public String invert() {
+        String text = "";
+        DoubleNode<T> current = tail;
+        
+        while (current != null) {
+            text += current.getElement() + "\n";
+            current = current.getPrevious();
+        }
+       
+        return text;
+    }  
 }
