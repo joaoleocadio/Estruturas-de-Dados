@@ -7,18 +7,15 @@ package SmackStack;
 public class SmackStack<T> implements SmackStackADT<T>{
     private final int DEFAULT_CAPACITY = 10;
     private int top;
-    private int rear;
     private T[] smackStack;
 
     public SmackStack() {
         this.top = 0;
-        this.rear = 0;
         this.smackStack = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
     public SmackStack(int initialCapacity) {
         this.top = 0;
-        this.rear = 0;
         this.smackStack = (T[]) new Object[initialCapacity];
     }
      
@@ -80,10 +77,11 @@ public class SmackStack<T> implements SmackStackADT<T>{
         String text = "";
         
         int lastPosition = size() - 1;
+        //int firstPosition = rear;
         
         while (lastPosition != -1) {            
             text += "Posição: " + lastPosition + " -------> " + "Conteúdo: " + smackStack[lastPosition] + "\n";
-            lastPosition--;
+            lastPosition--;        
         }
         
         return text;
@@ -94,10 +92,16 @@ public class SmackStack<T> implements SmackStackADT<T>{
         if (isEmpty()) {
             throw new EmptyCollectionException(EmptyCollectionException.EMPTYCOLLECTION);
         }
+       
+             
+        T result = smackStack[0];
+        smackStack[0] = null;
+        top--;
         
-        T result = smackStack[rear];
-        smackStack[rear] = null;
-        this.rear++;
+        for (int i = 0; i < size(); i++) {
+            smackStack[i] = smackStack[i + 1];
+        }
+        
         
         return result;
     }
