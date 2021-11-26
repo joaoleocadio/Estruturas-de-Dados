@@ -29,6 +29,8 @@ public class FP6EX1 {
             stack.smack();
             stack.smack();
             stack.pop();
+            System.out.println("Peek: " + stack.peek());
+            System.out.println(stack.isEmpty());
             
             System.out.println(stack.toString());
         } catch (Exception e) {

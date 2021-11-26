@@ -43,6 +43,11 @@ public class SmackStack<T> implements SmackStackADT<T>{
         }
     }
 
+    /**
+     * 
+     * @return
+     * @throws EmptyCollectionException 
+     */
     @Override
     public T peek() throws EmptyCollectionException {
         if (isEmpty()) {
@@ -52,16 +57,27 @@ public class SmackStack<T> implements SmackStackADT<T>{
         return smackStack[size() - 1];
     }
 
+    /**
+     * Método que verifica se o array está ou não vazio
+     * @return false se não estiver vazio | true caso o array se encontrar vazio
+     */
     @Override
     public boolean isEmpty() {
         return (this.top == 0);
     }
 
+    /**
+     * Retorna o tamanho da stack;
+     * @return 
+     */
     @Override
     public int size() {
         return this.top;
     }
     
+    /**
+     * Método private que permite expandir a capacidade do array automaticamente.
+     */
     private void expandCapacity() {
         T[] tmp = (T[]) (new Object[smackStack.length + DEFAULT_CAPACITY]);
         
@@ -72,6 +88,10 @@ public class SmackStack<T> implements SmackStackADT<T>{
         smackStack = tmp;
     }
 
+    /**
+     * Método toString
+     * @return 
+     */
     @Override
     public String toString() {
         String text = "";
@@ -87,6 +107,11 @@ public class SmackStack<T> implements SmackStackADT<T>{
         return text;
     } 
 
+    /**
+     * Método que elimina e devolve o último elemento da stack. 
+     * @return o elemento removido da stack
+     * @throws EmptyCollectionException 
+     */
     @Override
     public T smack() throws EmptyCollectionException {
         if (isEmpty()) {
@@ -104,6 +129,5 @@ public class SmackStack<T> implements SmackStackADT<T>{
         
         
         return result;
-    }
-    
+    }  
 }
