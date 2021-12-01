@@ -19,5 +19,11 @@ public class SortingandSearching {
             list = list.getNext();
         }
         return false;
-    }  
+    }
+    
+    /*
+    public static <T extends Comparable<? super T>> boolean binarySearch (T[] data, int min, int max, T target) {
+        
+    }
+*/
 }

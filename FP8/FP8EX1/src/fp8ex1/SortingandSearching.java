@@ -24,7 +24,7 @@ public class SortingandSearching {
             if (min <= midpoint - 1) {
                 found = binarySearch(data, min, midpoint - 1, target);
             }
-        } else if (midpoint + 1 <= max) {
+        } else if(midpoint + 1 <= max){
             found = binarySearch(data, midpoint + 1, max, target);
         }
         

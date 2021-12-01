@@ -4,8 +4,8 @@ package fp8ex1;
  *
  * @author joaoc
  */
+public class Car implements Comparable {
 
-public class Car implements Comparable{
     private int ano;
     private String marca;
 
@@ -34,21 +34,35 @@ public class Car implements Comparable{
     public int compareTo(Object o) {
         try {
             Car tmp = (Car) o;
-            if (this.marca.equals(tmp.marca)) {
-                if (this.ano < tmp.ano) {
-                    return -1;
-                } else if (this.ano == tmp.ano) {
-                    return 0;
-                } else {
-                    return 1;
-                }
-            } else {
+            
+            if (this.ano < tmp.ano) {
                 return -1;
-            }           
+            } else if (this.ano == tmp.ano) {
+                return 0;
+            } else {
+                return 1;
+            }
         } catch (Exception e) {
             throw new ClassCastException();
         }
     }
+
+    @Override
+    public String toString() {
+        return "Ano: " + ano + " marca=" + marca;
+    }
     
+    public static String printList(Car[] list) {
+        String txt = "";
+        
+        txt += "#### CARROS ####" + "\n";
+        for (int i = 0; i < list.length; i++) {
+            if (list[i] != null) {
+                txt += list[i].toString() + "\n";
+            }
+        }
+        
+        return txt;
+    }
     
 }
