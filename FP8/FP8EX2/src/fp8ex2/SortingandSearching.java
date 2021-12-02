@@ -23,8 +23,7 @@ public class SortingandSearching {
     
     
     public static <T extends Comparable<? super T>> boolean binarySearch (LinkedList<T> data, int min, int max, T target) {
-        boolean found = false;
-        int midpoint = (min + max) / 2;
+
         int i = 0;
         LinearNode<T> aux = data.getHead();
         T[] array = (T[]) new Comparable[data.getSize()];

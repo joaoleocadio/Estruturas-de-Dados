@@ -24,7 +24,8 @@ public class FP8EX2 {
                 
         System.out.println(list.printList());
         System.out.println("Resultado: " + SortingandSearching.linearSearch(list, c2));
-        System.out.println("Resultado: " + SortingandSearching.binarySearch(list, 0, 2, c2));
+        System.out.println("Resultado: " + SortingandSearching.binarySearch(list, 0, 1, c3));
+        System.out.println("");
     }
     
 }
