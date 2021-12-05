@@ -21,7 +21,15 @@ public class SortingandSearching {
         return false;
     }
     
-    
+    /**
+     * A pesquisa binária é impossível de fazer com listas ligadas
+     * @param <T>
+     * @param data
+     * @param min
+     * @param max
+     * @param target
+     * @return 
+     */
     public static <T extends Comparable<? super T>> boolean binarySearch (LinkedList<T> data, int min, int max, T target) {
 
         int i = 0;

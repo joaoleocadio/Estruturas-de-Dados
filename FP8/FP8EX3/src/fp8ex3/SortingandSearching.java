@@ -15,6 +15,15 @@ public class SortingandSearching {
         return false;
     }
 
+    /**
+     * Não dá para fazer com listas
+     * @param <T>
+     * @param data
+     * @param min
+     * @param max
+     * @param target
+     * @return 
+     */
     public static <T extends Comparable<? super T>> boolean binarySearch(T[] data, int min, int max, T target) {
         boolean found = false;
         int midpoint = (min + max) / 2;
@@ -32,6 +41,11 @@ public class SortingandSearching {
         return found;
     }
 
+    /**
+     * Ordena uma lista de valores ao colocar repetidamente os valores nas suas posições finais
+     * @param <T>
+     * @param data 
+     */
     public static <T extends Comparable<? super T>> void selectionSort(T[] data) {
         int min;
         T temp;
@@ -50,6 +64,11 @@ public class SortingandSearching {
         }
     }
 
+    /**
+     * Ordena uma lista de valores ao inserir repetidamente um determinado valor num subconjunto da lista
+     * @param <T>
+     * @param data 
+     */
     public static <T extends Comparable<? super T>> void insertionSort(T[] data) {
         for (int index = 1; index < data.length; index++) {
             T key = data[index];
@@ -66,6 +85,11 @@ public class SortingandSearching {
         }
     }
 
+    /**
+     * Ordena uma lista de valores ao comparar repetidamente os elementos vizinhos e trocando as suas posições, se necessário
+     * @param <T>
+     * @param data 
+     */
     public static <T extends Comparable<? super T>> void bubbleSort(T[] data) {
         int position, scan;
         T temp;
@@ -83,6 +107,13 @@ public class SortingandSearching {
         }
     }
 
+    /**
+     * Ordena uma lista de valores através da repetição da lista em torno de um elemento
+     * @param <T>
+     * @param data
+     * @param min
+     * @param max 
+     */
     public static <T extends Comparable<? super T>> void quickSort(T[] data, int min, int max) {
         int indexofpartition;
         if (max - min > 0) {
@@ -141,6 +172,14 @@ public class SortingandSearching {
         return right;
     }
 
+    /**
+     * Ordena uma lista de valores ao dividir recursivamente a lista a meio até que cada sub-lista tenha apenas um elemento, de seguida realiza a junção das 
+     * partes
+     * @param <T>
+     * @param data
+     * @param min
+     * @param max 
+     */
     public static <T extends Comparable<? super T>> void mergeSort(T[] data, int min, int max) {
         T[] temp;
         int index1, left, right;
