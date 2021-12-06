@@ -7,6 +7,8 @@ Java
 ## 💻 Estruturas de dados utilizadas neste repositório
 * Stacks;
 * Queues;
-* Listas;
+* Array Lists;
+* Double Linked Lists;
+* Trees;
 
 
