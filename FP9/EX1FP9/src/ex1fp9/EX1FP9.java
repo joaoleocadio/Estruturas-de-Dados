@@ -1,10 +1,10 @@
 package ex1fp9;
 
-import EmptyCollectionException.ElementNotFoundException;
-import EmptyCollectionException.EmptyCollectionException;
+import Exceptions.ElementNotFoundException;
+import Exceptions.EmptyCollectionException;
 import Tree.BinaryTreeNode;
 import Tree.LinkedBinaryTree;
-import UnorderedLists.ListsException;
+import Exceptions.ListsException;
 import java.util.Iterator;
 
 /**

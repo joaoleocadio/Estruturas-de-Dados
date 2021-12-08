@@ -1,4 +1,4 @@
-package EmptyCollectionException;
+package Exceptions;
 
 /**
  *

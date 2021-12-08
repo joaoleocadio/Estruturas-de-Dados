@@ -1,10 +1,10 @@
 package Tree;
 
-import EmptyCollectionException.ElementNotFoundException;
-import EmptyCollectionException.EmptyCollectionException;
+import Exceptions.ElementNotFoundException;
+import Exceptions.EmptyCollectionException;
 import Interfaces.BinaryTreeADT;
 import Queue.LinkedQueue;
-import UnorderedLists.ListsException;
+import Exceptions.ListsException;
 import UnorderedLists.UnorderedListArray;
 import java.util.Iterator;
 import java.util.logging.Level;

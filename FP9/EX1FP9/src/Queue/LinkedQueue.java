@@ -1,7 +1,7 @@
 package Queue;
 
 import Interfaces.QueueADT;
-import EmptyCollectionException.EmptyCollectionException;
+import Exceptions.EmptyCollectionException;
 
 /**
  *

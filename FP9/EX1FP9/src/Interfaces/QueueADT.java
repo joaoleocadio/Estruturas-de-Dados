@@ -1,6 +1,6 @@
 package Interfaces;
 
-import EmptyCollectionException.EmptyCollectionException;
+import Exceptions.EmptyCollectionException;
 
 /**
  *
