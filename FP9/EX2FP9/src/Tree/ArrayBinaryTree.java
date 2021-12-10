@@ -4,6 +4,7 @@ import Exceptions.ElementNotFoundException;
 import Exceptions.EmptyCollectionException;
 import Exceptions.ListsException;
 import Interfaces.BinaryTreeADT;
+import Queue.LinkedQueue;
 import UnorderedLists.UnorderedListArray;
 import java.util.Iterator;
 
@@ -128,7 +129,34 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
 
     @Override
     public Iterator<T> iteratorLevelOrder() throws ListsException, ElementNotFoundException, EmptyCollectionException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (isEmpty()) {
+            throw new EmptyCollectionException(EmptyCollectionException.EMPTY_COLLECTION);
+        }
+        
+        UnorderedListArray<T> list = new UnorderedListArray<>();
+        LinkedQueue<Integer> queue = new LinkedQueue<>();
+        int count = 0;
+
+        queue.enqueue(0);
+        count++;
+
+        while (!queue.isEmpty()) {
+            int position = queue.dequeue();
+            if (tree[position] != null) {
+                list.addToRear(tree[position]);
+                if (count < size() && tree[(position * 2 + 1)] != null) {
+                    queue.enqueue((position * 2 + 1));
+                    count++;
+                }
+                if (count < size() && tree[((position + 1) * 2)] != null) {
+                    queue.enqueue(((position + 1) * 2));
+                    count++;
+                }
+            }
+        }
+
+        return list.iterator();
+        
     }
     
 }

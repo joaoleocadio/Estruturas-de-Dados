@@ -136,10 +136,10 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>{
     @Override
     public String toString() {
         String text = "";
-        
+        Iterator itr = iterator();
 
-        for (int i = 0; i < size(); i++) {
-            text += "Posição: " + i + " -------> " + this.list[i].toString() + "\n";
+        while (itr.hasNext()) {
+            text += "\n" + itr.next().toString();
         }
 
         return text;
