@@ -30,6 +30,8 @@ public class EX1FP10 {
         tree.addElement(4);
         
         System.out.println("");
+        //tree.removeMin();
+        //tree.removeMax();
         tree.removeElement(5);
         //itr = tree.iteratorInOrder();
         itr = tree.iteratorLevelOrder();
@@ -37,7 +39,8 @@ public class EX1FP10 {
             System.out.println(itr.next() + " ");
         }
         
-        System.out.println("");
+        System.out.println("Min: " + tree.findMin());
+        System.out.println("Max: " + tree.findMax());
         /*
         tree.removeAllOccurrences(2);
         System.out.println("-----------");

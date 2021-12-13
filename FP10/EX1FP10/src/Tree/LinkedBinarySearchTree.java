@@ -102,24 +102,24 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
     protected BinaryTreeNode<T> replacement (BinaryTreeNode<T> node) {
         BinaryTreeNode<T> result = null;
         
-        if ((node.left == null) && (node.right == null)) {
+        if ((node.left == null) && (node.right == null)) { //Quando o node é uma folha
             result = null;
-        } else if ((node.left != null) && (node.right == null)) {
+        } else if ((node.left != null) && (node.right == null)) { // Quando o node só tem um filho à esquerda, o node é substituído pelo seu filho
             result = node.left;
-        } else if ((node.left == null) && (node.right != null)) {
+        } else if ((node.left == null) && (node.right != null)) { // Quando o node só tem um filho à direita, o node é substituído pelo seu filho
             result = node.right;
         } else {
             BinaryTreeNode<T> current = node.right;
             BinaryTreeNode<T> parent = node;
             
-            while (current.left != null) {
+            while (current.left != null) { // Chegar ao final do filho direito do lado esquerdo
                 parent = current;
                 current = current.left;
             }
             
-            if (node.right == current) {
+            if (node.right == current) { // se o node sem filho á esquerda for o igual ao filho direito do node a remover o filho esquerdo passa a ser filho esquerdo do filho direito
                 current.left = node.left;
-            } else {
+            } else { // se o node filho da direita tiver nodes á esquerda, esse node substituirá o node removido e o node pai dele passará a ser seu filho á direita
                 parent.left = current.right;
                 current.right = node.right;
                 current.left = node.left;
@@ -173,18 +173,62 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
     }
 
     @Override
-    public T removeMax() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public T removeMax() throws EmptyCollectionException {
+        T result = null;
+        
+        if (isEmpty()) {
+            throw new EmptyCollectionException("binary search tree");
+        } else {
+            if (root.right == null) {
+                result = root.element;
+                root = root.left;
+            } else {
+                BinaryTreeNode<T> parent = root;
+                BinaryTreeNode<T> current = root.right;
+                
+                while (current.right != null) {                    
+                    parent = current;
+                    current = current.right;
+                }
+                
+                result = current.element;
+                parent.right = current.left;
+            }
+            
+            count--;
+        }
+        
+        return result;
     }
 
     @Override
-    public T findMin() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public T findMin() throws EmptyCollectionException {
+        if (isEmpty()) {
+            throw new EmptyCollectionException(EmptyCollectionException.EMPTY_COLLECTION);
+        }
+        
+        BinaryTreeNode<T> found = root;
+        
+        while (found.getLeft() != null) {
+            found = found.getLeft();
+        }
+        
+        return found.getElement();
     }
 
     @Override
-    public T findMax() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public T findMax() throws EmptyCollectionException {
+        if (isEmpty()) {
+            throw new EmptyCollectionException(EmptyCollectionException.EMPTY_COLLECTION);
+        }
+        
+        BinaryTreeNode<T> found = root;
+        
+        while (found.getRight() != null) {            
+            found = found.getRight();
+        }
+        
+        return found.getElement();
     }
     
 }

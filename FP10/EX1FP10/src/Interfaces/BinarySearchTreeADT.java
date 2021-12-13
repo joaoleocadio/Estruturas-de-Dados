@@ -12,7 +12,7 @@ public interface BinarySearchTreeADT<T> extends BinaryTreeADT<T>{
     public T removeElement (T targetElement) throws ElementNotFoundException;
     public void removeAllOccurrences (T targetElement) throws ElementNotFoundException;
     public T removeMin() throws EmptyCollectionException;
-    public T removeMax();
-    public T findMin();
-    public T findMax();
+    public T removeMax() throws EmptyCollectionException;
+    public T findMin() throws EmptyCollectionException;
+    public T findMax() throws EmptyCollectionException;
 }
