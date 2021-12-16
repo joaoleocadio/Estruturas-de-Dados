@@ -48,7 +48,5 @@ public class EX1FP10 {
         while (itr.hasNext()) {
             System.out.println(itr.next() + " ");
         }*/
-    }
-    
-    
+    }    
 }
