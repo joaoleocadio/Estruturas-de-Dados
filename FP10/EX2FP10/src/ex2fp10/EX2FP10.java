@@ -37,12 +37,12 @@ public class EX2FP10 {
             
 
             //tree.removeAllOccurrences(5);
-            //tree.removeMax();
-            //tree.removeMin();
+            tree.removeMax();
+            tree.removeMin();
             System.out.println("Máx: " + tree.findMax());
             System.out.println("Mín: " + tree.findMin());
 
-            itr = tree.iteratorLevelOrder();
+            itr = tree.iteratorPreOrder();
             while (itr.hasNext()) {
                 System.out.println(itr.next() + " ");
             }
