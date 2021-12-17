@@ -74,7 +74,7 @@ public class ArrayBinarySearchTree<T> extends ArrayBinaryTree<T> implements Bina
             }
         }
         height = (int) (Math.log(maxIndex + 1) / Math.log(2)) + 1;
-        count++;
+        cont++;
     }
 
     private void expandCapacity() {
@@ -101,7 +101,7 @@ public class ArrayBinarySearchTree<T> extends ArrayBinaryTree<T> implements Bina
 
         result = tree[targetIndex];
         replace(targetIndex);
-        count--;
+        cont--;
 
         int temp = maxIndex;
         maxIndex = -1;
@@ -123,8 +123,8 @@ public class ArrayBinarySearchTree<T> extends ArrayBinaryTree<T> implements Bina
             while (contains((T) targetElement)) {
                 removeElement(targetElement);
             }
-        } catch (Exception e) {
-
+        } catch (Exception ex) {
+            
         }
     }
 

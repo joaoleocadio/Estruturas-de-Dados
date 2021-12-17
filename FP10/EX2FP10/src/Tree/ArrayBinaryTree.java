@@ -17,18 +17,18 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T>{
     protected final static int CAPACITY = 50;
     
     protected T[] tree;
-    protected int count;
+    protected int cont;
 
     public ArrayBinaryTree() {
         this.tree = (T[]) new Object[CAPACITY];
-        this.count = 0;
+        this.cont = 0;
         
     }
     
     public ArrayBinaryTree(T element) {
         this.tree = (T[]) new Object[CAPACITY];
         this.tree[0] = element;
-        this.count = 1;
+        this.cont = 1;
     }
     
     
@@ -42,12 +42,12 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T>{
 
     @Override
     public boolean isEmpty() {
-        return (this.count == 0);
+        return (this.cont == 0);
     }
 
     @Override
     public int size() throws EmptyCollectionException {
-        return this.count;
+        return this.cont;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T>{
         T temp = null;
         boolean found = false;
         
-        for (int ct = 0; ct < count && !found; ct++ ) {
+        for (int ct = 0; ct < cont && !found; ct++ ) {
             if (targetElement.equals(tree[ct])) {
                 found = true;
                 temp = tree[ct];
@@ -101,7 +101,7 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T>{
     }
     
     protected void preorder(int node, UnorderedListArray<T> templist) throws ListsException {
-        if (node < tree.length) {
+        if (node < cont) {
             if (tree[node] != null) {
                 templist.addToRear(tree[node]);
                 preorder(node * 2 + 1, templist);
@@ -111,11 +111,11 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T>{
     }
 
     protected void postorder(int node, UnorderedListArray<T> templist) throws ListsException {
-        if (node < tree.length) {
+        if (node < cont) {
             if (tree[node] != null) {
                 postorder(node * 2 + 1, templist);
-                templist.addToRear(tree[node]);
                 postorder((node + 1) * 2, templist);
+                templist.addToRear(tree[node]);             
             }
         }
     }
@@ -135,28 +135,22 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T>{
             throw new EmptyCollectionException(EmptyCollectionException.EMPTY_COLLECTION);
         }
 
-        UnorderedListArray<T> list = new UnorderedListArray<>();
-        LinkedQueue<Integer> queue = new LinkedQueue<>();
-        int count = 0;
+        UnorderedListArray<T> tempList = new UnorderedListArray<>();
+        int ct = 0;
+        int i = 0;
 
-        queue.enqueue(0);
-        count++;
-
-        while (!queue.isEmpty()) {
-            int position = queue.dequeue();
-            if (tree[position] != null) {
-                list.addToRear(tree[position]);
-                if (count < count && tree[(position * 2 + 1)] != null) {
-                    queue.enqueue((position * 2 + 1));
-                    count++;
-                }
-                if (count < count && tree[((position + 1) * 2)] != null) {
-                    queue.enqueue(((position + 1) * 2));
-                    count++;
-                }
-            }
+        if (isEmpty()) {
+            throw new ElementNotFoundException("Arvore vazia");
         }
 
-        return list.iterator();    
+        while (ct < cont) {
+            if (tree[i] != null) {
+                tempList.addToRear(tree[i]);
+                ct++;
+            }
+            i++;
+        }
+
+        return tempList.iterator(); 
     }   
 }
