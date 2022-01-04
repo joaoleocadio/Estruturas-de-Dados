@@ -28,8 +28,8 @@ public class EX1FP11 {
         
         heap.removeMin();
         
-        //heap.addElement(2);
-        //System.out.println("Min: " + heap.findMin());
+        heap.addElement(2);
+        System.out.println("Min: " + heap.findMin());
         itr = heap.iteratorPreOrder();
         
         while (itr.hasNext()) {            
