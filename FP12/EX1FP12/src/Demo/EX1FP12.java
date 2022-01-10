@@ -19,27 +19,37 @@ public class EX1FP12 {
         Graph<String> graph = new Graph<>();
         Iterator<Integer> itr;
         
+        String A = "A", B = "B", C = "C", D = "D", E = "E", G = "G";
+
+        graph.addVertex(A);
+        graph.addVertex(B);
+        graph.addVertex(C);
+        graph.addVertex(D);
+        graph.addVertex(E);
+        graph.addVertex(G);
+
+        graph.addEdge(A, B);
+        graph.addEdge(B, C);
+        graph.addEdge(B, D);
+        graph.addEdge(C, D);
+        graph.addEdge(C, E);
+        graph.addEdge(D, E);
+        graph.addEdge(D, G);
+        graph.addEdge(E, G);
         
         
-        graph.addVertex("a");
-        graph.addVertex("b");
-        graph.addVertex("c");
-        graph.addVertex("d");
-        
-        graph.addEdge("a", "b");
-        graph.addEdge("b", "a");
-        graph.addEdge("a", "c");
-        graph.addEdge("c", "a");
-        graph.addEdge("b", "c");
-        graph.addEdge("c", "b");
-        graph.addEdge("b", "d");
-        graph.addEdge("d", "b");
-        
-        itr = graph.iteratorBFS("d");
+        System.out.println(graph.toString());
+        itr = graph.iteratorShortestPath(C, A);
         while(itr.hasNext()) {
             System.out.print(itr.next());
         }
+         
+        System.out.println("------");
         
+        itr = graph.iteratorBFS(C);
+        while(itr.hasNext()) {
+            System.out.print(itr.next());
+        }
         //System.out.println(graph.toString());*/
         /*
         Graph<Integer> graphInt = new Graph<>();

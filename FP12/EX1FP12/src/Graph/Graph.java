@@ -226,19 +226,18 @@ public class Graph<T> implements GraphADT<T> {
         return resultList.iterator();
 
     }
-
-    @Override
-    public Iterator iteratorShortestPath(T startVertex, T targetVertex) throws ListsException, EmptyCollectionException {
-        Integer x;
+    
+    protected Iterator iteratorShortestPathIndices(int startIndex, int targetIndex) throws EmptyCollectionException, ListsException {
+        
+        int index = startIndex;
+        int[] pathLength = new int[numVertices];
+        int[] predecessor = new int[numVertices];
         LinkedQueue<Integer> traversalQueue = new LinkedQueue<Integer>();
-        UnorderedListArray<T> resultList = new UnorderedListArray<>();
-        int startIndex = getIndex(startVertex);
-        int targetIndex = getIndex(targetVertex);
-        int[][] info = new int[vertices.length][3];
-        boolean found = false;
-        int counter = 0;
+        UnorderedListArray<Integer> resultList
+                = new UnorderedListArray<Integer>();
 
-        if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)) {
+        if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)
+                || (startIndex == targetIndex)) {
             return resultList.iterator();
         }
 
@@ -248,43 +247,64 @@ public class Graph<T> implements GraphADT<T> {
         }
 
         traversalQueue.enqueue(new Integer(startIndex));
-        //Index of Vertex
-        info[counter][0] = startIndex;
-        //PathLength
-        info[counter][1] = 0;
-        //LastVertex
-        info[counter][2] = -1;
         visited[startIndex] = true;
+        pathLength[startIndex] = 0;
+        predecessor[startIndex] = -1;
 
-        while (!found && !traversalQueue.isEmpty()) {
-            x = traversalQueue.dequeue();
-            /** Find all vertices adjacent to x that have
-             not been visited and queue them up */
+        while (!traversalQueue.isEmpty() && (index != targetIndex)) {
+            index = (traversalQueue.dequeue()).intValue();
+
+            /**
+             * Update the pathLength for each unvisited vertex adjacent to the
+             * vertex at the current index.
+             */
             for (int i = 0; i < numVertices; i++) {
-                if (adjMatrix[x.intValue()][i] && !visited[i]) {
+                if (adjMatrix[index][i] && !visited[i]) {
+                    pathLength[i] = pathLength[index] + 1;
+                    predecessor[i] = index;
                     traversalQueue.enqueue(new Integer(i));
-                    counter++;
-                    info[counter][0] = i;
-                    info[counter][1] = info[x.intValue()][1] + 1;
-                    info[counter][2] = info[x.intValue()][0];
                     visited[i] = true;
-                    if (i == targetIndex) {
-                        found = true;
-                    }
                 }
             }
         }
+        if (index != targetIndex) // no path must have been found
+        {
+            return resultList.iterator();
+        }
 
-        if (found) {
-            resultList.addToFront(vertices[info[counter][0]]);
-            int lastIndex = info[counter][2];
-            while (lastIndex != -1) {
-                resultList.addToFront(vertices[info[lastIndex][0]]);
-                lastIndex = info[lastIndex][2];
-            }
+        LinkedStack<Integer> stack = new LinkedStack<Integer>();
+        index = targetIndex;
+        stack.push(new Integer(index));
+        do {
+            index = predecessor[index];
+            stack.push(new Integer(index));
+        } while (index != startIndex);
 
+        while (!stack.isEmpty()) {
+            resultList.addToRear(((Integer) stack.pop()));
+        }
+
+        return resultList.iterator();
+    }
+
+    public Iterator<T> iteratorShortestPath(int startIndex, int targetIndex) throws EmptyCollectionException, ListsException {
+        
+        UnorderedListArray<T> resultList = new UnorderedListArray<T>();
+        if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)) {
+            return resultList.iterator();
+        }
+
+        Iterator<Integer> it = iteratorShortestPathIndices(startIndex, targetIndex);
+        while (it.hasNext()) {
+            resultList.addToRear(vertices[((Integer) it.next()).intValue()]);
         }
         return resultList.iterator();
+    }
+
+    @Override
+    public Iterator iteratorShortestPath(T startVertex, T targetVertex) throws ListsException, EmptyCollectionException {
+        
+        return iteratorShortestPath(getIndex(startVertex), getIndex(targetVertex));
     }
 
     @Override

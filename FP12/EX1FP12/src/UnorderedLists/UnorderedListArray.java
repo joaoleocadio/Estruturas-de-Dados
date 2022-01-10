@@ -18,14 +18,16 @@ public class UnorderedListArray<T> extends ArrayList<T> implements UnorderedList
     public void addToFront(T element) throws ListsException {
         if (isEmpty()) {
             list[0] = element;
-        } else if (size() == list.length) {
-            expandList();
         } else {
-            for (int i = size() - 1; i >= 0; i--) {
-                list[i + 1] = list[i];
+            if (size() == list.length) {
+                expandList();
             }
             
-            list[0] = element;
+            int first = 0;
+            for (int i = size() - 1; i >= first; i--) {
+                list[i + 1] = list[i];
+            }
+            list[first] = element;
         }
         cont++;
         modCount++;
