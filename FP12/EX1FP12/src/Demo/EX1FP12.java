@@ -27,6 +27,7 @@ public class EX1FP12 {
         graph.addVertex(D);
         graph.addVertex(E);
         graph.addVertex(G);
+        
 
         graph.addEdge(A, B);
         graph.addEdge(B, C);
@@ -39,7 +40,7 @@ public class EX1FP12 {
         
         
         System.out.println(graph.toString());
-        itr = graph.iteratorShortestPath(C, A);
+        itr = graph.iteratorShortestPath(C, B);
         while(itr.hasNext()) {
             System.out.print(itr.next());
         }
