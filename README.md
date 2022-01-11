@@ -10,5 +10,6 @@ Java
 * Array Lists;
 * Double Linked Lists;
 * Trees;
+* Graphs;
 
 
