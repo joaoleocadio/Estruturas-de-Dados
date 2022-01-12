@@ -21,36 +21,39 @@ public class EX1FP12 {
         
         String A = "A", B = "B", C = "C", D = "D", E = "E", G = "G";
 
+        try {
+        
         graph.addVertex(A);
         graph.addVertex(B);
         graph.addVertex(C);
-        graph.addVertex(D);
-        graph.addVertex(E);
-        graph.addVertex(G);
-        
+        graph.addVertex(D);      
 
         graph.addEdge(A, B);
         graph.addEdge(B, C);
+        //graph.addEdge(C, B);
+        graph.addEdge(A, C);
+        //graph.addEdge(C, A);
         graph.addEdge(B, D);
-        graph.addEdge(C, D);
-        graph.addEdge(C, E);
-        graph.addEdge(D, E);
-        graph.addEdge(D, G);
-        graph.addEdge(E, G);
+        //graph.addEdge(D, B);
+        //graph.addEdge(B, A);
         
         
         System.out.println(graph.toString());
-        itr = graph.iteratorShortestPath(C, B);
+        itr = graph.iteratorDFS(B);
         while(itr.hasNext()) {
-            System.out.print(itr.next());
+            System.out.print(itr.next() + ",");
         }
-         
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+         /*
         System.out.println("------");
         
         itr = graph.iteratorBFS(C);
         while(itr.hasNext()) {
             System.out.print(itr.next());
-        }
+        }*/
         //System.out.println(graph.toString());*/
         /*
         Graph<Integer> graphInt = new Graph<>();
