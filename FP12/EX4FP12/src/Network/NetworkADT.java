@@ -1,5 +1,7 @@
 package Network;
 
+import Exceptions.EmptyCollectionException;
+import Exceptions.ListsException;
 import Graph.GraphADT;
 import Graph.GraphExceptions;
 
@@ -25,5 +27,5 @@ public interface NetworkADT<T> extends GraphADT<T> {
      * @param vertex2 the second vertex
      * @return the weight of the shortest path in this network
      */
-    public double shortestPathWeight(T vertex1, T vertex2) throws GraphExceptions;
+    public double shortestPathWeight(T vertex1, T vertex2) throws GraphExceptions, ListsException, EmptyCollectionException;
 }

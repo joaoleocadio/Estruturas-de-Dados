@@ -33,13 +33,13 @@ public class EX1FP12 {
         //graph.addEdge(C, B);
         graph.addEdge(A, C);
         //graph.addEdge(C, A);
-        graph.addEdge(B, D);
+        //graph.addEdge(B, D);
         //graph.addEdge(D, B);
         //graph.addEdge(B, A);
-        
+            System.out.println("False: " + graph.isConnected());
         
         System.out.println(graph.toString());
-        itr = graph.iteratorDFS(B);
+        itr = graph.iteratorShortestPath(A, D);
         while(itr.hasNext()) {
             System.out.print(itr.next() + ",");
         }

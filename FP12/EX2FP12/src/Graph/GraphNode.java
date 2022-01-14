@@ -17,14 +17,6 @@ public class GraphNode<T> {
         this.edgeList = new UnorderedListArray();
     }
 
-    @Override
-    public String toString() {
-        String text = "Element: " + element + "";
-        Iterator<GraphNode<T>> printItr = edgeList.iterator();
-        while (printItr.hasNext()) {
-            text += "\nEdge: " + element + "->" + printItr.next().element + "";
-        }
-        return text;
-    }
+    
      
 }

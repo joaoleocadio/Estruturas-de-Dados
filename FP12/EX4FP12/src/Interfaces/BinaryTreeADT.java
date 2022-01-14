@@ -10,7 +10,7 @@ import java.util.Iterator;
  * @author joaoc
  */
 public interface BinaryTreeADT<T> {
-    public T getRoot() throws ElementNotFoundException;
+    public T getRoot() throws ElementNotFoundException, EmptyCollectionException;
     public String toString(); 
     public boolean isEmpty();
     public int size() throws EmptyCollectionException;
