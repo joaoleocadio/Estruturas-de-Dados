@@ -9,7 +9,6 @@ Java
 * Queues;
 * Array Lists;
 * Double Linked Lists;
+* Heaps;
 * Trees;
 * Graphs;
-
-
